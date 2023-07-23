@@ -3,7 +3,7 @@ const Item = require("../models/Item");
 
 router.get("/", async (req, res) => {
     const data = await Item.find()
-    res.send(data);
+    res.json({ "items": data })
 })
 
 router.post("/", async (req, res) => {

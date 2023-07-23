@@ -6,13 +6,17 @@ import InputArea from './components/InputArea'
 import TodoList from './components/TodoList'
 
 export default function App() {
-  const [itemList, setItemList] = useState([{}]);
+  const [itemList, setItemList] = useState([]);
 
-  useEffect(async () => {
-    const response = await fetch("http://localhost:3000/item")
-    const items = response.json()
-    console.log(items);
-    setItemList(items)
+  useEffect(() => {
+    async function getItems() {
+      const response = await fetch("http://localhost:3000/item")
+      const data = await response.json()
+      setItemList(() => {
+        return data.items
+      })
+    }
+    getItems();
   }, []);
 
   return (
