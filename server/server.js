@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const homeRouter = require("./routes/home");
+require("dotenv").config();
 
-mongoose.connect("mongodb+srv://bgcheng27:tQZ8IoUQfZKFnraI@cluster0.veetqu8.mongodb.net/todo_list?retryWrites=true&w=majority")
+mongoose.connect(process.env.DATABASE_URL)
 
 const app = express()
 const PORT = 3000;
