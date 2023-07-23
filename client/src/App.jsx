@@ -1,10 +1,16 @@
 import React from 'react'
 import '../public/styles.css'
 
+import Heading from './components/Heading'
+import InputArea from './components/InputArea'
+import TodoList from './components/TodoList'
+
 export default function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <Heading />
+      <InputArea />
+      <TodoList />
     </>
   )
 }
