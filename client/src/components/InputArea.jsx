@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function InputArea() {
+export default function InputArea({ onAdd }) {
+  const [inputText, setInputText] = useState("");
+
+  const handleChange = (event) => {
+    setInputText(event.target.value)
+  }
+
+  const addItem = (event) => {
+    event.preventDefault();
+    onAdd();
+    setInputText("");
+  }
+  
   return (
     <div>
-      <input name="itemText" type="text" />
-      <button>Add</button>
+      <input onChange={handleChange} name="itemText" type="text" value={inputText}/>
+      <button onClick={addItem}>Add</button>
     </div>
   );
 }
