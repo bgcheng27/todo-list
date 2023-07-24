@@ -10,7 +10,7 @@ export default function App() {
 
   useEffect(() => {
     async function getItems() {
-      const response = await fetch("http://localhost:3000/item")
+      const response = await fetch("http://localhost:3000/items")
       const data = await response.json()
       setItemList(() => {
         return data.items
@@ -20,7 +20,7 @@ export default function App() {
   }, []);
 
   const addItem = async (newItemName) => {
-    const data = await fetch("http://localhost:3000/item", {
+    const data = await fetch("http://localhost:3000/items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,7 +35,7 @@ export default function App() {
   }
 
   const deleteItem = async (id) => {
-    await fetch(`http://localhost:3000/item/${id}`, {
+    await fetch(`http://localhost:3000/items/${id}`, {
       method: "Delete"
     })
 
