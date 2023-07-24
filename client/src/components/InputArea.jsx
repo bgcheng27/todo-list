@@ -9,7 +9,7 @@ export default function InputArea({ onAdd }) {
 
   const addItem = (event) => {
     event.preventDefault();
-    onAdd();
+    onAdd(inputText);
     setInputText("");
   }
   

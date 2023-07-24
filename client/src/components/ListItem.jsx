@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
 
 export default function ListItem({ text }) {
-    return (
-        <li>{text}</li>
-    )
+  return (
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>{text}</span>
+      </label>
+      <button>Delete</button>
+    </li>
+  );
 }

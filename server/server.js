@@ -3,11 +3,15 @@ const mongoose = require("mongoose");
 const itemRouter = require("./routes/item");
 require("dotenv").config();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 mongoose.connect(process.env.DATABASE_URL)
 
 const app = express();
 const PORT = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(cors({
     origin: "http://localhost:5173",

@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        await Item.create({ text: req.body.itemText, completed: false});
-        res.send("Successfully Added!");
+        const newItem = await Item.create({ text: req.body.itemText, completed: false});
+        res.send(newItem).status(204);
     } catch (error) {
         res.send(error);
     }
