@@ -12,7 +12,6 @@ export default function App() {
     async function getItems() {
       const response = await fetch("http://localhost:3000/item")
       const data = await response.json()
-      console.log(data.items)
       setItemList(() => {
         return data.items
       })
@@ -35,11 +34,23 @@ export default function App() {
     })
   }
 
+  const deleteItem = async (id) => {
+    await fetch(`http://localhost:3000/item/${id}`, {
+      method: "Delete"
+    })
+
+    setItemList((prevList) => {
+      return prevList.filter((item) => {
+        return item._id !== id;
+      })
+    })
+  }
+
   return (
     <>
       <Heading />
       <InputArea onAdd={addItem}/>
-      <TodoList todos={itemList}/>
+      <TodoList todos={itemList} onDelete={deleteItem}/>
     </>
   )
 }
