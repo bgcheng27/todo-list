@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 export default function TodoList({ todos, onDelete }) {
   return (
     <div>
-      <ul>
+      <ul className="list-group">
         {todos.map((todo) => {
           return (
             <ListItem

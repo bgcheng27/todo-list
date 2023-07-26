@@ -5,17 +5,19 @@ export default function Navbar() {
   return (
     <>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Landing</Link>
-          </li>
-          <li>
-            <Link to="/todo">Todo</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <Link to="/">Landing</Link>
+            </div>
+            <div className="col">
+              <Link to="/todo">Todo</Link>
+            </div>
+            <div className="col">
+              <Link to="/login">Login</Link>
+            </div>
+          </div>
+        </div>
       </nav>
     </>
   );

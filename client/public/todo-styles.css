@@ -1,0 +1,20 @@
+li {
+  list-style-type: none;
+}
+
+.todo-list {
+  margin: auto;
+  width: 30%;
+  padding: 10px;
+}
+
+.todo-banner {
+  background-color: #ff4040;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.todo-input {
+  margin: auto;
+  width: 89%;
+}

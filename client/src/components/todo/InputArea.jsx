@@ -17,9 +17,9 @@ export default function InputArea({ onAdd }) {
   }
   
   return (
-    <div>
-      <input onChange={handleChange} name="itemText" type="text" value={inputText}/>
-      <button onClick={addItem}>Add</button>
+    <div className="input-group">
+      <input className="form-control" onChange={handleChange} name="itemText" type="text" value={inputText}/>
+      <span><button className="btn btn-primary" onClick={addItem}>Add</button></span>
     </div>
   );
 }
