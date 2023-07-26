@@ -9,6 +9,9 @@ export default function InputArea({ onAdd }) {
 
   const addItem = (event) => {
     event.preventDefault();
+
+    if (inputText === "") return;
+
     onAdd(inputText);
     setInputText("");
   }
