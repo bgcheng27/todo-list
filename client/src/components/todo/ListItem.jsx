@@ -9,14 +9,12 @@ export default function ListItem({ text, onDelete }) {
 
   return (
     <li className="list-group-item">
-      <div className="container">
-        <div className="row">
-          <label className="col-10">
-            <input className="form-check-input" type="checkbox" />
-            <span className="mx-2" >{text}</span>
-          </label>
-          <button className="btn btn-sm btn-outline-danger col" onClick={handleDelete}>Delete</button>
-        </div>
+      <div className="d-flex">
+        <label className="flex-grow-1">
+          <input type="checkbox" />
+          <span className="mx-3 fs-4">{text}</span>
+        </label>
+        <button className="btn btn-md btn-outline-danger" onClick={handleDelete}>Delete</button>
       </div>
     </li>
   );

@@ -17,9 +17,11 @@ export default function InputArea({ onAdd }) {
   }
   
   return (
-    <div className="input-group">
-      <input className="form-control" onChange={handleChange} name="itemText" type="text" value={inputText}/>
-      <span><button className="btn btn-primary" onClick={addItem}>Add</button></span>
-    </div>
+    <form onSubmit={addItem}>
+      <div className="input-group">
+        <input className="form-control no-wrap fs-4" onChange={handleChange} placeholder="Enter a new task" name="itemText" type="text" value={inputText}/>
+        <button className="btn btn-lg btn-primary" type="submit">Add</button>
+      </div>
+    </form>
   );
 }
