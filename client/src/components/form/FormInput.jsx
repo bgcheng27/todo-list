@@ -5,8 +5,8 @@ import '../../../public/form-styles.css';
 export default function({ label, inputType }) {
   return (
     <div className="form-input">
-      <label>{label}</label>
-      <input type={inputType} />
+      <label className="form-label">{label}</label>
+      <input className="form-control" type={inputType} />
       <br />
     </div>
   )
