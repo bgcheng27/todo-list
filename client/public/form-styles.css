@@ -1,0 +1,26 @@
+.form {
+  margin: auto;
+  width: 40%;
+  background-color: #777;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form-input {
+  margin: auto;
+  width: 50%;
+}
+
+.submit-area {
+  margin: auto;
+  width: 50%;
+}
+
+.form-change {
+  color: red;
+  cursor: pointer;
+}

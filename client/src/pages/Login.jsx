@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from "react";
+
+import FormTemplate from "../components/form/FormTemplate";
 
 export default function Login() {
-    return (
-        <h1>Login</h1>
-    )
+  const [isLogin, setLogin] = useState(true);
+
+  return (
+    <>
+      <FormTemplate />
+    </>
+  );
 }

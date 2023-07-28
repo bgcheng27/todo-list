@@ -8,12 +8,14 @@ export default function ListItem({ text, onDelete }) {
   }
 
   return (
-    <li>
-      <label>
-        <input type="checkbox" />
-        <span>{text}</span>
-      </label>
-      <button onClick={handleDelete}>Delete</button>
+    <li className="list-group-item">
+      <div className="d-flex">
+        <label className="flex-grow-1">
+          <input type="checkbox" />
+          <span className="mx-3 fs-4">{text}</span>
+        </label>
+        <button className="btn btn-md btn-outline-danger" onClick={handleDelete}>Delete</button>
+      </div>
     </li>
   );
 }

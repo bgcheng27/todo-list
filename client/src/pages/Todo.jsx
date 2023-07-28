@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../public/styles.css'
+import '../../public/todo-styles.css'
 
 import Heading from '../components/todo/Heading'
 import InputArea from '../components/todo/InputArea'
@@ -47,10 +48,10 @@ export default function Todo() {
   }
 
   return (
-    <>
+    <div className="todo-list container">
       <Heading />
       <InputArea onAdd={addItem}/>
       <TodoList todos={itemList} onDelete={deleteItem}/>
-    </>
+    </div>
   )
 }
