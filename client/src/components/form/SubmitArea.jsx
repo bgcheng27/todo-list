@@ -6,7 +6,7 @@ export default function SubmitArea({ isLogin, switchForm}) {
       <span className="form-change" onClick={switchForm}>
         {isLogin ? "Create a new account" : "Already registered? Login"}
       </span>
-      <button type="submit">Submit</button>
+      <button className="btn btn-primary mx-2" type="submit">Submit</button>
     </div>
   );
 }
