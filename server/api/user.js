@@ -1,29 +1,55 @@
 const router = require('express').Router();
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const saltRounds = 15;
+const passport = require('passport');
 
 router.get("/", async (req, res) => {
     const data = await User.find()
     res.json({ "users": data })
 })
 
-router.post("/", async (req, res) => {
-    let username = req.body.usernameInput
-    let email = req.body.emailInput
-    let password = req.body.passwordInput
-    let confirm = req.body.confirmInput
+router.post("/login", async (req, res) => {
+    let { username, password } = req.body
+    const user = new User({ username, password })
+
+    req.login(user, (err) => {
+        if (err) {
+            res.send(err)
+        } else {
+            passport.authenticate("local")(req, res, () => {
+                res.send(user).status(200)
+            })
+        }
+    })
+})
+
+router.post("/register", async (req, res) => {
+    let { username, email, password, confirm } = req.body
 
     if (password !== confirm) {
         res.send("Passwords don't match");
         return;
     }
 
-    bcrypt.hash(password, saltRounds, async (err, hash) => {
-        const newUser = await User.create({ username, email, password: hash })
-        res.send(newUser).status(204)
+    User.register({ username, email }, password, (err, user) => {
+        if (err) {
+            res.send(err);
+        } else {
+            User.authenticate("local")(req, res, () => {
+                res.send(user).status(204);
+            })
+        }
     })
-    
+})
+
+router.post("/logout", (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            res.send(err);
+            return;
+        } else {
+            res.send("Successfully logged out")
+        }
+    });
 })
 
 router.get("/:id", async (req, res) => {
