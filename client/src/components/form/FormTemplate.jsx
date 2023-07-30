@@ -16,10 +16,10 @@ export default function FormTemplate() {
     <div className="form">
       <h1 className="form-title">{isLogin ? "Log In" : "Register"}</h1>
       <form>
-        <FormInput label="Username" inputType="text" />
-        { !isLogin && <FormInput label="Email" inputType="email" /> }
-        <FormInput label="Password" inputType="password" />
-        { !isLogin && <FormInput label="Confirm Password" inputType="password" /> }
+        <FormInput label="Username" inputType="text" name="username"/>
+        { !isLogin && <FormInput label="Email" inputType="email" name="email" /> }
+        <FormInput label="Password" inputType="password" name="password" />
+        { !isLogin && <FormInput label="Confirm Password" inputType="password" name="confirm" /> }
         <SubmitArea isLogin={isLogin} switchForm={switchForm} />
       </form>
     </div>
