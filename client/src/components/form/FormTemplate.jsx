@@ -26,7 +26,7 @@ export default function FormTemplate() {
         return { ...prevValue, email: value }
       } else if (name === "password") {
         return { ...prevValue, password: value }
-      } else if (name === "confirm") {
+      } else if (name === "confirmPassword") {
         return { ...prevValue, confirmPassword: value }
       }
     })
@@ -37,26 +37,29 @@ export default function FormTemplate() {
     setLogin((prev) => !prev);
   };
 
-  const register = async (event) => {
-    console.log("register");
-  }
-
-  const login = async (event) => {
-    event.preventDefault()
-    const { username, password } = inputs;
-
-    const response = await fetch("http://localhost:3000/users/login", {
+  async function auth(endpoint, fields) {
+    const response = await fetch(`http://localhost:3000/users${endpoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ username: username, password: password }),
-      redirect: "follow"
+      body: JSON.stringify(fields)
     })
     const result = await response.json();
-
     localStorage.setItem("user-info", JSON.stringify(result))
-    navigate("/")
+    navigate("/");
+  }
+
+  const register = async (event) => {
+    event.preventDefault();
+    const { username, email, password, confirmPassword } = inputs;
+    auth("/register", { username, email, password, confirmPassword });
+  }
+
+  const login = async (event) => {
+    event.preventDefault();
+    const { username, password } = inputs;
+    auth("/login", { username, password });
   }
 
   return (

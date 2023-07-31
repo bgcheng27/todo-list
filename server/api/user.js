@@ -23,9 +23,9 @@ router.post("/login", async (req, res) => {
 })
 
 router.post("/register", async (req, res) => {
-    let { username, email, password, confirm } = req.body
+    let { username, email, password, confirmPassword } = req.body
 
-    if (password !== confirm) {
+    if (password !== confirmPassword) {
         res.send("Passwords don't match");
         return;
     }
