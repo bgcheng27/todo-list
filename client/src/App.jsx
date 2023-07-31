@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import Navbar from './partials/Navbar'
 
@@ -8,11 +8,30 @@ import Landing from './pages/Landing'
 import Login from './pages/Login'
 
 export default function App() {
+  const [isLogged, setLogged] = useState(false)
+
+  useEffect(() => {
+    let user = localStorage.getItem("user-info");
+    let userInfo = JSON.parse(user);
+    setLogged(() => {
+      return userInfo ? true : false
+    })
+  })
+
+  let navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.clear();
+    setLogged(false);
+    navigate("/");
+  }
+
+
   return (
     <>
-      <Navbar />
+      <Navbar logged={isLogged} onLogout={logOut} />
       <Routes>
-        <Route path="/" element={<Landing />}/>
+        <Route path="/" element={<Landing logged={isLogged}/>} />
         <Route path="/todo" element={<Todo />} />
         <Route path="/login" element={<Login />} />
       </Routes>
