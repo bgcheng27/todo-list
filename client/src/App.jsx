@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Landing />}/>
         <Route path="/todo" element={<Todo />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<h1>Logged Out</h1>} />
       </Routes>
     </>
   )

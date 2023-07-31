@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../../../public/form-styles.css';
 
-export default function({ label, inputType, name}) {
+export default function({ label, inputType, name, value, onChange}) {
   return (
     <div className="form-input">
       <label className="form-label">{label}</label>
-      <input className="form-control" type={inputType} name={name} />
+      <input onChange={onChange} className="form-control" type={inputType} name={name} value={value}/>
       <br />
     </div>
   )
