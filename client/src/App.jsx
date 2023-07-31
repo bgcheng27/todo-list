@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <>
-      <Navbar logged={isLogged} onLogout={logOut} />
+      <Navbar logged={isLogged} onLogOut={logOut} />
       <Routes>
         <Route path="/" element={<Landing logged={isLogged}/>} />
         <Route path="/todo" element={<Todo />} />
