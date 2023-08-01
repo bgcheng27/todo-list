@@ -1,7 +1,5 @@
 import React from 'react'
 
-import '../../../public/todo-styles.css'
-
 export default function Heading() {
   return (
     <div className="todo-banner">

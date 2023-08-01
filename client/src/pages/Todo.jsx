@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import '../../public/styles.css'
-import '../../public/todo-styles.css'
 
 import Heading from '../components/todo/Heading'
 import InputArea from '../components/todo/InputArea'
@@ -37,7 +35,7 @@ export default function Todo() {
 
   const deleteItem = async (id) => {
     await fetch(`http://localhost:3000/items/${id}`, {
-      method: "Delete"
+      method: "DELETE"
     })
 
     setItemList((prevList) => {
