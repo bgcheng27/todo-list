@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-import '../../../public/form-styles.css'
 import FormInput from './FormInput'
 import SubmitArea from "./SubmitArea";
 

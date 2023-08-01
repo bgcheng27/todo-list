@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import '../../../public/form-styles.css';
-
 export default function({ label, inputType, name, value, onChange}) {
   return (
     <div className="form-input">

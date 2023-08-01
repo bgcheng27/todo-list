@@ -6,6 +6,7 @@ import Navbar from './partials/Navbar'
 import Todo from './pages/Todo'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
+import PrivateRoutes from './util/PrivateRoutes'
 
 export default function App() {
   const [isLogged, setLogged] = useState(false)
@@ -20,7 +21,10 @@ export default function App() {
 
   let navigate = useNavigate();
 
-  const logOut = () => {
+  const logOut = async () => {
+    await fetch("http://localhost:3000/users/logout", {
+      method: "POST"
+    })
     localStorage.clear();
     setLogged(false);
     navigate("/");
@@ -31,8 +35,10 @@ export default function App() {
     <>
       <Navbar logged={isLogged} onLogOut={logOut} />
       <Routes>
-        <Route path="/" element={<Landing logged={isLogged}/>} />
-        <Route path="/todo" element={<Todo />} />
+        <Route element={<PrivateRoutes logged={isLogged} />}>
+          <Route path="/todo" element={<Todo />} />
+        </Route>
+        <Route path="/" element={<Landing logged={isLogged} />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
