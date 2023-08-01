@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/User');
 const passport = require('passport');
 
+// ../users/
 router.get("/", async (req, res) => {
     const data = await User.find()
     res.json({ "users": data })
@@ -54,9 +55,7 @@ router.post("/logout", (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const data = await User.findOne({ _id: req.params.id }, )
-
     console.log(data);
-
     res.json(data)
 })
 
