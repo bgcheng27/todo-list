@@ -4,18 +4,13 @@ import Heading from '../components/todo/Heading'
 import InputArea from '../components/todo/InputArea'
 import TodoList from '../components/todo/TodoList'
 
-export default function Todo() {
+export default function Todo({ user}) {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
-    async function getItems() {
-      const response = await fetch("http://localhost:3000/items")
-      const data = await response.json()
-      setItemList(() => {
-        return data.items
-      })
-    }
-    getItems();
+    fetch("http://localhost:3000/items")
+      .then(response => response.json())
+      .then(data => setItemList(() => data.items))
   }, []);
 
   const addItem = async (newItemName) => {
@@ -24,7 +19,7 @@ export default function Todo() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ itemText: newItemName })
+      body: JSON.stringify({ itemText: newItemName, userId: user._id })
     })
     const content = await data.json();
     

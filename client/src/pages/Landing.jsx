@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Landing({ logged }) {
+export default function Landing({ user }) {
   return (
     <>
-      { logged ? <Link className="fs-2 m-4" to="/todo">My List</Link> : <h1 className="m-4">Landing</h1> }
+      { user ? <Link className="fs-2 m-4" to="/todo">My List</Link> : <h1 className="m-4">Landing</h1> }
     </>
   );
 }

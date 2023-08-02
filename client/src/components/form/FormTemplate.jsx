@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import FormInput from './FormInput'
 import SubmitArea from "./SubmitArea";
 
-export default function FormTemplate() {
+export default function FormTemplate({ setUser }) {
   const [isLogin, setLogin] = useState(true);
   const [inputs, setInputs] = useState({
     username: "",
@@ -46,16 +46,17 @@ export default function FormTemplate() {
     })
     const result = await response.json();
     localStorage.setItem("user-info", JSON.stringify(result))
+    setUser(result)
     navigate("/");
   }
 
-  const register = async (event) => {
+  const register = (event) => {
     event.preventDefault();
     const { username, email, password, confirmPassword } = inputs;
     auth("/register", { username, email, password, confirmPassword });
   }
 
-  const login = async (event) => {
+  const login = (event) => {
     event.preventDefault();
     const { username, password } = inputs;
     auth("/login", { username, password });

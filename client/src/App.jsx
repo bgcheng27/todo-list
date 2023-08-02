@@ -9,15 +9,13 @@ import Login from './pages/Login'
 import PrivateRoutes from './util/PrivateRoutes'
 
 export default function App() {
-  const [isLogged, setLogged] = useState(false)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
-    let user = localStorage.getItem("user-info");
-    let userInfo = JSON.parse(user);
-    setLogged(() => {
-      return userInfo ? true : false
-    })
-  })
+    let user = localStorage.getItem("user-info")
+    let userInfo = JSON.parse(user)
+    setUser(userInfo)
+  }, [])
 
   let navigate = useNavigate();
 
@@ -26,20 +24,22 @@ export default function App() {
       method: "POST"
     })
     localStorage.clear();
-    setLogged(false);
+    setUser(null);
     navigate("/");
   }
 
 
   return (
     <>
-      <Navbar logged={isLogged} onLogOut={logOut} />
+      <Navbar user={user} onLogOut={logOut} />
       <Routes>
-        <Route element={<PrivateRoutes logged={isLogged} />}>
-          <Route path="/todo" element={<Todo />} />
+        <Route path="/" element={ <Landing user={user} /> } />
+        <Route element={ <PrivateRoutes user={user} redirect="/login" /> }>
+          <Route path="/todo" element={ <Todo user={user } />} />
         </Route>
-        <Route path="/" element={<Landing logged={isLogged} />} />
-        <Route path="/login" element={<Login />} />
+        <Route element={ <PrivateRoutes user={!user} redirect="/" /> }>
+          <Route path="/login" element={ <Login setUser={setUser} />} />
+        </Route>
       </Routes>
     </>
   )

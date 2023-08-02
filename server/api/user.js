@@ -10,14 +10,14 @@ router.get("/", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     let { username, password } = req.body
-    const user = new User({ username, password })
+    const user = await User.findOne({ username })
 
     req.login(user, (err) => {
         if (err) {
-            res.send(err)
+            res.send(err).status(401)
         } else {
             passport.authenticate("local")(req, res, () => {
-                res.send(user).status(200)
+                res.send(user).status(201)
             })
         }
     })
