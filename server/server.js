@@ -5,10 +5,9 @@ const userRouter = require("./api/user");
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
 const session = require("express-session");
 const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose")
+const User = require('./models/User');
 
 
 const app = express();
@@ -17,8 +16,13 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"]
+}));
+
 app.use(session({
-    secret: "This is a secret.",
+    secret: "secret",
     resave: false,
     saveUninitialized: false
 }));
@@ -28,10 +32,19 @@ app.use(passport.session());
 
 mongoose.connect(process.env.DATABASE_URL);
 
-app.use(cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PATCH", "DELETE"]
-}));
+passport.use(User.createStrategy());
+
+passport.serializeUser((user, done) => {
+    process.nextTick(() => {
+        done(null, user);
+    });
+});
+  
+passport.deserializeUser((user, done) => {
+    process.nextTick(() => {
+        return done(null, user);
+    });
+});
 
 app.use("/items", itemRouter);
 app.use("/users", userRouter);

@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
-const Item = require('./Item');
-
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose")
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = mongoose.Schema({
     username: String,
@@ -13,9 +10,4 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose)
 
-const User = mongoose.model("User", userSchema);
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);

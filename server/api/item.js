@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const newItem = await Item.create({ text: req.body.itemText, completed: false});
+        const newItem = await Item.create({ text: req.body.itemText, completed: false, userId: req.body.userId });
         res.send(newItem).status(204);
     } catch (error) {
         res.send(error);

@@ -6,34 +6,40 @@ import Navbar from './partials/Navbar'
 import Todo from './pages/Todo'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
+import Register from './pages/Register'
+import PrivateRoutes from './util/PrivateRoutes'
 
 export default function App() {
-  const [isLogged, setLogged] = useState(false)
+  const [user, setUser] = useState(() => {
+    let user = localStorage.getItem("user-info")
+    if (user === null) return null
 
-  useEffect(() => {
-    let user = localStorage.getItem("user-info");
-    let userInfo = JSON.parse(user);
-    setLogged(() => {
-      return userInfo ? true : false
-    })
+    return JSON.parse(user)
   })
 
   let navigate = useNavigate();
 
-  const logOut = () => {
+  const logOut = async () => {
+    await fetch("http://localhost:3000/users/logout", {
+      method: "POST"
+    })
     localStorage.clear();
-    setLogged(false);
+    setUser(null);
     navigate("/");
   }
 
-
   return (
     <>
-      <Navbar logged={isLogged} onLogOut={logOut} />
+      <Navbar user={user} onLogOut={logOut} />
       <Routes>
-        <Route path="/" element={<Landing logged={isLogged}/>} />
-        <Route path="/todo" element={<Todo />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={ <Landing user={user} /> } />
+        <Route element={ <PrivateRoutes user={user} redirect="/login" /> }>
+          <Route path="/todo" element={ <Todo user={user } />} />
+        </Route>
+        <Route element={ <PrivateRoutes user={!user} redirect="/" /> }>
+          <Route path="/login" element={ <Login setUser={setUser} />} />
+          <Route path="/register" element={ <Register setUser={setUser} />} />
+        </Route>
       </Routes>
     </>
   )
