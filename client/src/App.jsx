@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import Navbar from './partials/Navbar'
+import Footer from './partials/Footer'
 
 import Todo from './pages/Todo'
 import Landing from './pages/Landing'
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="*" element={ <Landing user={user} /> } />
         </Route>
       </Routes>
+      <Footer />
     </>
   )
 }
