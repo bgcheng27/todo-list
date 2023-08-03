@@ -6,6 +6,7 @@ import Navbar from './partials/Navbar'
 import Todo from './pages/Todo'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
+import Register from './pages/Register'
 import PrivateRoutes from './util/PrivateRoutes'
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
         </Route>
         <Route element={ <PrivateRoutes user={!user} redirect="/" /> }>
           <Route path="/login" element={ <Login setUser={setUser} />} />
+          <Route path="/register" element={ <Register setUser={setUser} />} />
         </Route>
       </Routes>
     </>
