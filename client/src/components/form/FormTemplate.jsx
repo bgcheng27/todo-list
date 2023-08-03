@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom"
 import FormInput from './FormInput'
 import SubmitArea from "./SubmitArea";
 
-export default function FormTemplate({ setUser }) {
-  const [isLogin, setLogin] = useState(true);
+export default function FormTemplate({ setUser, isLogin }) {
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -33,7 +32,8 @@ export default function FormTemplate({ setUser }) {
 
   const switchForm = (event) => {
     event.preventDefault();
-    setLogin((prev) => !prev);
+    // setLogin((prev) => !prev);
+    isLogin ? navigate("/register") : navigate("/login");
   };
 
   async function auth(endpoint, fields) {
