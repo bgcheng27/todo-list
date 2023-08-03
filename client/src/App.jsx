@@ -32,13 +32,13 @@ export default function App() {
     <>
       <Navbar user={user} onLogOut={logOut} />
       <Routes>
-        <Route path="/" element={ <Landing user={user} /> } />
         <Route element={ <PrivateRoutes user={user} redirect="/login" /> }>
-          <Route path="/todo" element={ <Todo user={user } />} />
+          <Route path="/" element={ <Landing user={user} /> } />
         </Route>
         <Route element={ <PrivateRoutes user={!user} redirect="/" /> }>
           <Route path="/login" element={ <Login setUser={setUser} />} />
           <Route path="/register" element={ <Register setUser={setUser} />} />
+          <Route path="*" element={ <Landing user={user} /> } />
         </Route>
       </Routes>
     </>

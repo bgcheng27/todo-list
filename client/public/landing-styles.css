@@ -1,0 +1,12 @@
+.landing {
+  margin: auto;
+  width: 30%;
+  background-color: #ff4040;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}

@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Todo from './Todo'
+
 export default function Landing({ user }) {
   return (
     <>
-      { user ? <Link className="fs-2 m-4" to="/todo">My List</Link> : <h1 className="m-4">Landing</h1> }
+      { user ? 
+      <Todo user={user}/>
+      : 
+      <h1 className="m-4 text-center">Landing</h1> }
     </>
   );
 }
