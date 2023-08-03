@@ -9,13 +9,12 @@ import Login from './pages/Login'
 import PrivateRoutes from './util/PrivateRoutes'
 
 export default function App() {
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     let user = localStorage.getItem("user-info")
-    let userInfo = JSON.parse(user)
-    setUser(userInfo)
-  }, [])
+    if (user === null) return null
+
+    return JSON.parse(user)
+  })
 
   let navigate = useNavigate();
 
@@ -27,7 +26,6 @@ export default function App() {
     setUser(null);
     navigate("/");
   }
-
 
   return (
     <>

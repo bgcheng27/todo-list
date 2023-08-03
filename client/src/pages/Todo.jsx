@@ -4,13 +4,16 @@ import Heading from '../components/todo/Heading'
 import InputArea from '../components/todo/InputArea'
 import TodoList from '../components/todo/TodoList'
 
-export default function Todo({ user}) {
+export default function Todo({ user }) {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/items")
       .then(response => response.json())
-      .then(data => setItemList(() => data.items))
+      .then(data => {
+        return data.items.filter((item) => item.userId === user._id)
+      })
+      .then(newItems => setItemList(newItems));
   }, []);
 
   const addItem = async (newItemName) => {

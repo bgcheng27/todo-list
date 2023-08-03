@@ -34,15 +34,15 @@ mongoose.connect(process.env.DATABASE_URL);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser((user, cb) => {
+passport.serializeUser((user, done) => {
     process.nextTick(() => {
-        cb(null, { id: user.id, username: user.username });
+        done(null, user);
     });
 });
   
-passport.deserializeUser((user, cb) => {
+passport.deserializeUser((user, done) => {
     process.nextTick(() => {
-        return cb(null, user);
+        return done(null, user);
     });
 });
 
